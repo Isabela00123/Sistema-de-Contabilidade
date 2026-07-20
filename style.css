@@ -1,0 +1,824 @@
+/* ==========================================
+   RESET
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    font-family: "Inter", sans-serif;
+    background: #F7F8FC;
+    color: #4A5568;
+}
+
+
+/* ==========================================
+   CORES
+========================================== */
+
+:root {
+
+    --background: #F4F7FB;
+
+    --sidebar: #4F46E5;
+
+    --card: #FFFFFF;
+
+    --border: #E7EAF5;
+
+    --primary: #6366F1;
+
+    --primary-hover: #4338CA;
+
+    --success: #22C55E;
+
+    --danger: #EF4444;
+
+    --text: #1F2937;
+
+    --text-light: #6B7280;
+
+    --shadow: 0 15px 35px rgba(79, 70, 229, .12);
+
+    --radius: 18px;
+
+}
+
+
+/* ==========================================
+   LAYOUT
+========================================== */
+
+.app {
+
+    display: flex;
+
+    min-height: 100vh;
+
+}
+
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.sidebar {
+
+    width: 260px;
+
+    background: linear-gradient(180deg,
+            #6366F1,
+            #4F46E5);
+
+    padding: 35px 25px;
+
+    position: fixed;
+
+    top: 0;
+
+    bottom: 0;
+
+    left: 0;
+
+    color: white;
+
+}
+
+.logo {
+
+    margin-bottom: 60px;
+
+}
+
+.logo h2 {
+
+    color: white;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+}
+
+.logo span {
+
+    color: #C7D2FE;
+
+}
+
+.sidebar ul {
+
+    list-style: none;
+
+}
+
+.sidebar li {
+
+    margin-bottom: 15px;
+
+}
+
+.sidebar a {
+
+    display: block;
+
+    text-decoration: none;
+
+    color: #E5E7FF;
+
+    padding: 14px 18px;
+
+    border-radius: 12px;
+
+    transition: .25s;
+
+}
+
+.sidebar a:hover {
+
+    background: rgba(255, 255, 255, .12);
+
+}
+
+.sidebar .active a {
+
+    background: white;
+
+    color: #4F46E5;
+
+    font-weight: 600;
+
+}
+
+/* ==========================================
+   CONTEÚDO
+========================================== */
+
+.content {
+
+    margin-left: 260px;
+
+    width: 100%;
+
+    padding: 45px;
+
+}
+
+
+/* ==========================================
+   TOPO
+========================================== */
+
+.topbar {
+
+    margin-bottom: 35px;
+
+}
+
+.topbar h1 {
+
+    font-size: 34px;
+
+    margin-bottom: 10px;
+
+    color: var(--text);
+
+}
+
+.topbar p {
+
+    color: var(--text-light);
+
+}
+
+
+/* ==========================================
+   CARD
+========================================== */
+
+.card {
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, .05);
+
+    margin-bottom: 30px;
+
+}
+
+.card {
+    animation: fade .4s ease;
+}
+
+@keyframes fade {
+
+    from {
+
+        opacity: 0;
+        transform: translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+        transform: translateY(0);
+
+    }
+
+}
+
+.card-header {
+
+    margin-bottom: 25px;
+
+}
+
+.card-header h2 {
+
+    margin-bottom: 8px;
+
+}
+
+.card-header p {
+
+    color: var(--text-light);
+
+}
+
+
+/* ==========================================
+   FORMULÁRIO
+========================================== */
+
+.grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+
+}
+
+.input-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+.input-group label {
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+
+}
+
+.input-group input,
+.input-group select {
+
+    padding: 15px;
+
+    border: 2px solid transparent;
+
+    background: #F8FAFF;
+
+    border-radius: 12px;
+
+    transition: .25s;
+
+    font-size: 15px;
+
+}
+
+.input-group input:focus,
+.input-group select:focus {
+
+    outline: none;
+
+    border-color: #6366F1;
+
+    background: white;
+
+    transform: scale(1.01);
+
+}
+
+
+/* ==========================================
+   BOTÃO
+========================================== */
+
+.actions {
+
+    margin-top: 35px;
+
+}
+
+button {
+
+    background: #6366F1;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+    font-weight: 600;
+
+    font-size: 15px;
+
+}
+
+button:hover {
+
+    background: #4338CA;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 12px 25px rgba(99, 102, 241, .25);
+
+}
+
+
+/* ==========================================
+   FEEDBACK
+========================================== */
+
+#feedback {
+
+    font-weight: 600;
+
+    margin-top: 20px;
+
+}
+
+
+/* ==========================================
+   CARDS DE ESTATÍSTICAS
+========================================== */
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+
+}
+
+.stat-card {
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .05);
+
+    border-top: 5px solid #6366F1;
+
+}
+
+.stat-card span {
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+}
+
+.stat-card h2 {
+
+    margin-top: 12px;
+
+    font-size: 28px;
+
+}
+
+
+/* ==========================================
+   TABELA
+========================================== */
+
+.table-container {
+
+    overflow-x: auto;
+
+}
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+thead {
+
+    background: #EEF2FF;
+
+}
+
+th {
+
+    padding: 18px;
+
+    text-align: left;
+
+    color: var(--text);
+
+    font-weight: 600;
+
+}
+
+td {
+
+    padding: 18px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+tbody tr {
+
+    transition: .2s;
+
+}
+
+tbody tr:hover {
+
+    background: #F5F7FF;
+
+}
+
+
+/* ==========================================
+   BOTÃO EXCLUIR
+========================================== */
+
+.btn-delete {
+
+    background: #EF4444;
+
+    color: white;
+
+    padding: 8px 14px;
+
+    border-radius: 8px;
+
+}
+
+.btn-delete:hover {
+
+    background: #DC2626;
+
+}
+
+.page {
+
+    display: none;
+
+    animation: fade .35s ease;
+
+}
+
+.page.active {
+
+    display: block;
+
+}
+
+@keyframes fade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(10px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   MÓDULO IMPOSTOS
+========================================== */
+
+.resultado-impostos {
+
+    text-align: center;
+
+    padding: 20px;
+
+}
+
+.resultado-impostos h1 {
+
+    margin: 20px 0;
+
+    font-size: 48px;
+
+    color: var(--primary);
+
+    font-weight: 700;
+
+}
+
+.resultado-impostos hr {
+
+    margin: 25px 0;
+
+    border: none;
+
+    border-top: 1px solid var(--border);
+
+}
+
+#passosCalculo {
+
+    background: #F8FAFF;
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    margin-top: 20px;
+
+    text-align: left;
+
+    line-height: 2;
+
+    font-family: Consolas, monospace;
+
+    color: var(--text);
+
+}
+
+/* ==========================================
+   MÓDULO 3 - ATIVOS
+========================================== */
+
+#ativos .card {
+
+    margin-bottom: 30px;
+
+}
+
+#ativos .card-header h2 {
+
+    color: var(--primary);
+
+}
+
+#ativos .stats {
+
+    margin-top: 20px;
+
+}
+
+#ativos .stat-card {
+
+    text-align: center;
+
+    transition: .3s;
+
+}
+
+#ativos .stat-card:hover {
+
+    transform: translateY(-5px);
+
+}
+
+/* Valor Residual */
+
+#valorResidual {
+
+    color: #3B82F6;
+
+}
+
+/* Depreciação */
+
+#depreciacaoAcumulada {
+
+    color: #F59E0B;
+
+}
+
+/* Valor Atual */
+
+#valorAtual {
+
+    color: #10B981;
+
+}
+
+#ativos table td {
+
+    vertical-align: middle;
+
+}
+
+#ativos tbody tr {
+
+    transition: .3s;
+
+}
+
+#ativos tbody tr:hover {
+
+    background: #F7F8FF;
+
+}
+
+#formAtivo button {
+
+    min-width: 230px;
+
+}
+
+/* ==========================================
+   MÓDULO 4 - DASHBOARD
+========================================== */
+
+#dashboard .card{
+
+    margin-bottom:30px;
+
+}
+
+#dashboard .stats{
+
+    margin-bottom:30px;
+
+}
+
+#dashboard .stat-card{
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+#dashboard .stat-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+#dashboard h2{
+
+    color:var(--primary);
+
+}
+
+/* SVG */
+
+#graficoSVG{
+
+    width:100%;
+
+    margin-top:20px;
+
+}
+
+#graficoSVG text{
+
+    font-size:15px;
+
+    fill:var(--text);
+
+    font-weight:600;
+
+}
+
+/* Barras */
+
+#barLancamentos{
+
+    fill:#6366F1;
+
+    transition:.6s;
+
+}
+
+#barAtivos{
+
+    fill:#22C55E;
+
+    transition:.6s;
+
+}
+
+#barValor{
+
+    fill:#F59E0B;
+
+    transition:.6s;
+
+}
+
+#barDebitos{
+
+    fill:#EF4444;
+
+    transition:.6s;
+
+}
+
+/* Fundo das barras */
+
+#graficoSVG::before{
+
+    display:none;
+
+}
+
+
+/* ==========================================
+   RESPONSIVIDADE
+========================================== */
+
+@media(max-width:1000px) {
+
+    #graficoSVG{
+
+        height:420px;
+    }
+
+    .grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .stats {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+@media(max-width:800px) {
+
+    .sidebar {
+
+        display: none;
+
+    }
+
+    .content {
+
+        margin-left: 0;
+
+        padding: 25px;
+
+    }
+
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+    font-size: 14px;
+}

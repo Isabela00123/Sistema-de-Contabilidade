@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>Sistema de Contabilidade</title>
+    <link rel="stylesheet" href="style.css">
+
+
+
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <h2>Contábil<span>Pro</span></h2>
+
+            </div>
+
+            <nav>
+
+                <ul>
+
+                    <li class="active">
+
+                        <a href="#" data-section="lancamentos">
+
+                            Lançamentos
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#" data-section="impostos">
+
+                            Impostos
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#" data-section="ativos">
+
+                            Ativos
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#" data-section="dashboard">
+
+                            Dashboard
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </nav>
+        </aside>
+
+        <!-- CONTEÚDO -->
+
+        <main class="content">
+
+            <!-- Cabeçalho -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <h1>Contábil<span>Pro</span></h1>
+
+                    <p>
+                        Controle financeiro utilizando o método das partidas dobradas.
+                    </p>
+
+                </div>
+
+            </header>
+
+            <!-- Formulário -->
+            <section id="lancamentos" class="page active">
+
+                <!-- Cabeçalho do módulo -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h2>Novo Lançamento</h2>
+
+                        <p>
+                            Os valores de débito e crédito devem ser exatamente iguais.
+                        </p>
+
+                    </div>
+
+                    <form id="formLancamento">
+
+                        <div class="grid">
+
+                            <div class="input-group">
+
+                                <label for="contaDebito">Conta Débito</label>
+
+                                <select id="contaDebito">
+
+                                    <option value="Caixa">Caixa</option>
+                                    <option value="Banco">Banco</option>
+                                    <option value="Clientes">Clientes</option>
+                                    <option value="Fornecedores">Fornecedores</option>
+                                    <option value="Receitas">Receitas</option>
+                                    <option value="Despesas">Despesas</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="valorDebito">Valor Débito</label>
+
+                                <input id="valorDebito" type="number" step="0.01" placeholder="0,00" required>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="contaCredito">Conta Crédito</label>
+
+                                <select id="contaCredito">
+
+                                    <option value="Banco">Banco</option>
+                                    <option value="Caixa">Caixa</option>
+                                    <option value="Clientes">Clientes</option>
+                                    <option value="Fornecedores">Fornecedores</option>
+                                    <option value="Receitas">Receitas</option>
+                                    <option value="Despesas">Despesas</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="valorCredito">Valor Crédito</label>
+
+                                <input id="valorCredito" type="number" step="0.01" placeholder="0,00" required>
+
+                            </div>
+
+                        </div>
+
+                        <div class="actions">
+
+                            <button type="submit" id="btnSalvar">
+
+                                Salvar Lançamento
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                    <div id="feedback"></div>
+
+                </div>
+
+                <!-- Estatísticas -->
+
+                <section class="stats">
+
+                    <div class="stat-card">
+
+                        <span>Total de Lançamentos</span>
+
+                        <h2 id="totalLancamentos">0</h2>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <span>Total Debitado</span>
+
+                        <h2 id="totalDebito">R$ 0,00</h2>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <span>Total Creditado</span>
+
+                        <h2 id="totalCredito">R$ 0,00</h2>
+
+                    </div>
+
+                </section>
+
+                <!-- Histórico -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h2>Histórico de Lançamentos</h2>
+
+                    </div>
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Data</th>
+                                    <th>Conta Débito</th>
+                                    <th>Conta Crédito</th>
+                                    <th>Valor</th>
+                                    <th>Ações</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="tabelaLancamentos"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+
+
+
+            <section id="impostos" class="page">
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h2>Cálculo de Impostos</h2>
+
+                        <p>
+                            Cálculo utilizando juros compostos (efeito cascata).
+                        </p>
+
+                    </div>
+
+                    <div class="grid">
+
+                        <div class="input-group">
+
+                            <label>Valor Base</label>
+
+                            <input type="number" id="valorBase" placeholder="1000.00">
+
+                        </div>
+
+                        <div class="input-group">
+
+                            <label>Imposto 1 (%)</label>
+
+                            <input type="number" id="imposto1" placeholder="10">
+
+                        </div>
+
+                        <div class="input-group">
+
+                            <label>Imposto 2 (%)</label>
+
+                            <input type="number" id="imposto2" placeholder="10">
+
+                        </div>
+
+                        <div class="input-group">
+
+                            <label>Imposto 3 (%)</label>
+
+                            <input type="number" id="imposto3" placeholder="10">
+
+                        </div>
+
+                    </div>
+
+                    <div class="actions">
+
+                        <button id="btnCalcular">
+
+                            Calcular Impostos
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- RESULTADO -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h2>Resultado</h2>
+
+                    </div>
+
+                    <div class="resultado-impostos">
+
+                        <h3>
+
+                            Valor Final
+
+                        </h3>
+
+                        <h1 id="resultadoFinal">
+
+                            R$ 0,00
+
+                        </h1>
+
+                        <hr>
+
+                        <h3>
+
+                            Passo a passo
+
+                        </h3>
+
+                        <div id="passosCalculo">
+
+                            Nenhum cálculo realizado.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+
+
+
+            <section id="ativos" class="page">
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h2>Controle de Ativos</h2>
+
+                        <p>
+                            Cadastro e cálculo automático da depreciação linear dos ativos.
+                        </p>
+
+                    </div>
+
+                    <form id="formAtivo">
+
+                        <div class="grid">
+
+                            <div class="input-group">
+
+                                <label for="nomeAtivo">
+
+                                    Nome do Ativo
+
+                                </label>
+
+                                <input type="text" id="nomeAtivo" placeholder="Ex.: Computador" required>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="valorAtivo">
+
+                                    Valor de Compra (R$)
+
+                                </label>
+
+                                <input type="number" id="valorAtivo" step="0.01" placeholder="5000" required>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="dataCompra">
+
+                                    Data da Compra
+
+                                </label>
+
+                                <input type="date" id="dataCompra" required>
+
+                            </div>
+
+                            <div class="input-group">
+
+                                <label for="vidaUtil">
+
+                                    Vida Útil (anos)
+
+                                </label>
+
+                                <input type="number" id="vidaUtil" placeholder="5" required>
+
+                            </div>
+
+                        </div>
+
+                        <div class="actions">
+
+                            <button type="submit">
+
+                                Calcular Depreciação
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <!-- Resultado -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h2>Resultado da Depreciação</h2>
+
+                    </div>
+
+                    <div class="stats">
+
+                        <div class="stat-card">
+
+                            <span>Valor Residual</span>
+
+                            <h2 id="valorResidual">
+
+                                R$ 0,00
+
+                            </h2>
+
+                        </div>
+
+                        <div class="stat-card">
+
+                            <span>Depreciação Acumulada</span>
+
+                            <h2 id="depreciacaoAcumulada">
+
+                                R$ 0,00
+
+                            </h2>
+
+                        </div>
+
+                        <div class="stat-card">
+
+                            <span>Valor Atual</span>
+
+                            <h2 id="valorAtual">
+
+                                R$ 0,00
+
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Histórico -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h2>Ativos Cadastrados</h2>
+
+                    </div>
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Ativo</th>
+
+                                    <th>Valor Inicial</th>
+
+                                    <th>Data Compra</th>
+
+                                    <th>Vida Útil</th>
+
+                                    <th>Valor Atual</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="tabelaAtivos">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+
+
+            <section id="dashboard" class="page">
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h2>Dashboard</h2>
+
+                        <p>
+                            Resumo geral do sistema contábil.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- Cards Resumo -->
+
+                <section class="stats">
+
+                    <div class="stat-card">
+
+                        <span>Total de Lançamentos</span>
+
+                        <h2 id="dashLancamentos">
+
+                            0
+
+                        </h2>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <span>Total de Ativos</span>
+
+                        <h2 id="dashAtivos">
+
+                            0
+
+                        </h2>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <span>Valor dos Ativos</span>
+
+                        <h2 id="dashValorAtivos">
+
+                            R$ 0,00
+
+                        </h2>
+
+                    </div>
+
+                </section>
+
+                <!-- Gráfico SVG -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h2>Resumo Visual</h2>
+
+                    </div>
+
+                    <svg id="graficoSVG" width="100%" height="320" viewBox="0 0 700 320">
+
+                        <!-- Fundo das barras -->
+
+                        <rect x="170" y="30" width="450" height="30" rx="8" fill="#EEF2FF"></rect>
+                        <rect x="170" y="100" width="450" height="30" rx="8" fill="#EEF2FF"></rect>
+                        <rect x="170" y="170" width="450" height="30" rx="8" fill="#EEF2FF"></rect>
+                        <rect x="170" y="240" width="450" height="30" rx="8" fill="#EEF2FF"></rect>
+
+                        <!-- Títulos -->
+
+                        <text x="20" y="50">Lançamentos</text>
+                        <text x="20" y="120">Ativos</text>
+                        <text x="20" y="190">Valor dos Ativos</text>
+                        <text x="20" y="260">Débitos</text>
+
+                        <!-- Barras -->
+
+                        <rect id="barLancamentos" x="170" y="30" width="0" height="30" rx="8"></rect>
+
+                        <rect id="barAtivos" x="170" y="100" width="0" height="30" rx="8"></rect>
+
+                        <rect id="barValor" x="170" y="170" width="0" height="30" rx="8"></rect>
+
+                        <rect id="barDebitos" x="170" y="240" width="0" height="30" rx="8"></rect>
+
+                    </svg>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <footer class="footer">
+    Desenvolvido por <strong>bidev.io</strong> © 2026
+</footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
